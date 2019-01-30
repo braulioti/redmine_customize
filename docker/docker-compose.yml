@@ -1,0 +1,25 @@
+version: '3.1'
+
+volumes:
+  redmine-plugins:
+  redmine-themes:
+  redmine-data:
+
+services:
+
+  redmine:
+    image: redmine
+    restart: always
+    container_name: redmine:3.3.9
+    ports:
+      - 3000:3000
+    volumes:
+      - /app/docker/redmine/plugins:/usr/src/redmine/plugins
+      - /app/docker/redmine/themes:/usr/src/redmine/public/themes
+      - /app/docker/redmine/data:/usr/src/redmine/files
+    environment:
+      REDMINE_DB_MYSQL: <IP DATABASE SERVER>
+      REDMINE_DB_PORT: <DATABASE PORT>
+      REDMINE_DB_USERNAME: <DATABASE PORT>
+      REDMINE_DB_PASSWORD: <DATABASE PASSWORD>
+      REDMINE_DB_DATABASE: <DATABASE NAME>
